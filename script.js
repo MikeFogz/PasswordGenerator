@@ -11,18 +11,21 @@ var emoji = ["😀", "🤯", "🧐", "😎"]
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  var length = parseInt(prompt( "How many characters should the passowrd be?"))
 
   passwordText.value = password;
 
-}
-
-let lowerCase = confirm("Do you want lowercase?"){
-  if (lowerCase) {
-    
-  } else {
-    
+  if (length < 8 || length > 128 || isNaN(length)) {
+    alert("Not accepted. Must be between 8-128 characters.")
   }
 }
+
+// let lowerCase = confirm("Do you want lowercase?"){
+//   if (lowerCase) {
+//   } else {
+    
+//   }
+// }
 
 
 // Add event listener to generate button
