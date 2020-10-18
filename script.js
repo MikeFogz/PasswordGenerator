@@ -29,7 +29,6 @@ var upperChars = [
   "Y",
   "Z",
 ];
-//can I list all caps and then use toLowerCase to pull a lower case version?
 var specChars = [
   "!",
   "#",
@@ -65,9 +64,9 @@ function writePassword() {
   // var password = generatePassword();
   var passwordText = document.querySelector("#password");
   var length = parseInt(prompt("How many characters should the password be?"));
-
-  passwordText.value = password;
-
+  var password = [];
+  var pw = "";
+  //Checking length before confirming criteria.
   if (length < 8 || length > 128 || isNaN(length)) {
     alert("Try again. Password must be between 8-128 characters.");
   } else {
@@ -75,16 +74,13 @@ function writePassword() {
     var upperTrue = confirm("Do you want Upper Case letters?");
     var numsTrue = confirm("Do you want numbers?");
     var sCharsTrue = confirm("Do you want Special Characters?");
-    var emojiTrue = confrim("Do you want emojis?");
-
-    if (lowerTrue) if (upperTrue) password.push(upperChars);
+    var emojiTrue = confirm("Do you want emojis?");
+    //pushing criteria to empty array the password will pull from
+    if (lowerTrue) password.push(lowerChars);
+    if (upperTrue) password.push(upperChars);
     if (numsTrue) password.push(num);
     if (sCharsTrue) password.push(specChars);
     if (emojiTrue) password.push(emoji);
-    //I'm not 100% sure generatePassword() is acting as an array.
-    //I need to push these if  statements to an array to generate the password
-
-    var pw = "";
     // looking at password length and adding to it as long as pw is less than length entered.
     while (pw.length < length) {
       for (let i = 0; i < password.length; i++) {
@@ -94,6 +90,9 @@ function writePassword() {
         }
       }
     }
+    console.log(pw, `password length: ${pw.length}`);
+    // Pushing password to page to display
+    passwordText.textContent = pw;
   }
 }
 
